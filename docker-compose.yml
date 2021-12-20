@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5438:5432'
+    volumes: 
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  backend:
+    env_file:
+        "./server/.env"
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    image: "seb.wojtasik/flashy-backend"
+    ports:
+      - "4000:4000"
+    links:
+      - "postgres:pg"
+  frontend:
+    env_file:
+        "./client/.env"
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: "seb.wojtasik/flashy-frontend"
+    ports:
+      - "80:80"
+    links:
+      - "backend:back"

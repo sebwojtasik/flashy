@@ -1,0 +1,19 @@
+.deckLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.deckLink:hover .deleteIcon {
+  opacity: 1;
+}
+
+.deleteIcon {
+  opacity: 0;
+  color: var(--color-red);
+  height: 1em;
+  cursor: pointer;
+}

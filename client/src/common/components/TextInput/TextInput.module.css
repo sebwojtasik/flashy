@@ -1,0 +1,12 @@
+.input {
+  border: none;
+  border-bottom: var(--border-thin);
+  box-shadow: none;
+  padding: 0.25em;
+  margin: 0.5em 0;
+  background-color: var(--bg-color);
+}
+
+.input:focus {
+  outline: none;
+}

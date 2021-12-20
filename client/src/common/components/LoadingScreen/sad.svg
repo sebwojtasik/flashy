@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="111.66" height="134" viewBox="0 0 111.66 134">
+  <defs>
+    <clipPath id="clip-sad">
+      <rect width="111.66" height="134"/>
+    </clipPath>
+  </defs>
+  <g id="sad" clip-path="url(#clip-sad)">
+    <rect width="111.66" height="134" fill="#fff"/>
+    <g id="Group_44" data-name="Group 44" transform="translate(5333 5569)">
+      <path id="Path_3" data-name="Path 3" d="M19.851,0h71.96a19.851,19.851,0,0,1,19.851,19.851v94.293A19.851,19.851,0,0,1,91.811,134H19.851A19.851,19.851,0,0,1,0,114.144V19.851A19.851,19.851,0,0,1,19.851,0Z" transform="translate(-5333 -5569)" fill="#fff"/>
+      <path id="Path_3_-_Outline" data-name="Path 3 - Outline" d="M19.851,5A14.851,14.851,0,0,0,5,19.851v94.293A14.851,14.851,0,0,0,19.851,129h71.96a14.851,14.851,0,0,0,14.851-14.851V19.851A14.851,14.851,0,0,0,91.811,5H19.851m0-5h71.96a19.851,19.851,0,0,1,19.851,19.851v94.293A19.851,19.851,0,0,1,91.811,134H19.851A19.851,19.851,0,0,1,0,114.144V19.851A19.851,19.851,0,0,1,19.851,0Z" transform="translate(-5333 -5569)" fill="#505050"/>
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="7.444" cy="7.444" r="7.444" transform="translate(-5305.084 -5509.446)" fill="#505050"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="7.444" cy="7.444" r="7.444" transform="translate(-5262.901 -5509.446)" fill="#505050"/>
+      <g id="Group_1" data-name="Group 1" transform="translate(-5300.643 -5486.298)">
+        <path id="Path_1" data-name="Path 1" d="M128.642,1794.658h48.424s2.841,26.009-24.048,25.8S128.642,1794.658,128.642,1794.658Z" transform="translate(177.153 1820.456) rotate(180)" fill="#505050"/>
+        <path id="Intersection_2" data-name="Intersection 2" d="M5016.65,5505a3,3,0,0,1-3-3v-1.428a29.532,29.532,0,0,1,10.959-1.775,30.1,30.1,0,0,1,11.262,2.034V5502a3,3,0,0,1-3,3Z" transform="translate(-5000.474 -5498.796)" fill="#b2b2b2"/>
+      </g>
+      <path id="Intersection_1" data-name="Intersection 1" d="M-1.275,13.587C-1.233,6.078,6.526,0,16.094,0s17.328,6.078,17.37,13.587Z" transform="translate(-5292.643 -5474.086)" fill="#878787"/>
+    </g>
+  </g>
+</svg>

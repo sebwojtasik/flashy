@@ -1,0 +1,10 @@
+.sidebarToggle {
+  height: 2em;
+  margin: 0.5em;
+}
+
+@media (min-width: 1200px) {
+  .sidebarToggle {
+    display: none;
+  }
+}

@@ -1,0 +1,52 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deck {
+  id         String      @id @default(uuid()) @db.Uuid
+  userId     String?     @map("user_id") @db.Uuid
+  name       String?     @default("")
+  createdAt  DateTime?   @default(now()) @map("created_at") @db.Timestamptz(6)
+  user       User?       @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  flashcards Flashcard[]
+
+  @@map("decks")
+}
+
+model Flashcard {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String?   @map("user_id") @db.Uuid
+  deckId     String?   @map("deck_id") @db.Uuid
+  front      String?   @default("")
+  back       String?   @default("")
+  due        DateTime? @default(now()) @db.Timestamptz(6)
+  new        Boolean?  @default(true)
+  retention  Int?      @default(0)
+  reviews    Int?      @default(0)
+  createdAt  DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+  deck       Deck?     @relation(fields: [deckId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user       User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  nextReview Int?      @default(1)
+  mastered   Boolean?  @default(false)
+
+  @@map("flashcards")
+}
+
+model User {
+  id         String      @id @default(uuid()) @db.Uuid
+  password   String?     @default("")
+  avatar     String?     @default("")
+  name       String?     @default("")
+  email      String?     @default("")
+  createdAt  DateTime?   @default(now()) @map("created_at") @db.Timestamptz(6)
+  decks      Deck[]
+  flashcards Flashcard[]
+
+  @@map("users")
+}

@@ -1,0 +1,7 @@
+.deckContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em, max-content));
+  /* grid-template-rows: repeat(6, minmax(5em, max-content)); */
+  grid-gap: 0.5rem;
+  grid-auto-flow: dense;
+}

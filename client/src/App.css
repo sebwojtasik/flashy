@@ -1,0 +1,72 @@
+html,
+body {
+  --custom-font-family: -apple-system, BlinkMacSystemFont, Raleway, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  --bg-color: #fcfcfc;
+  --primary-color: #505050;
+  --border-thick: 4px solid #505050;
+  --border-thin: 3px solid #505050;
+  --color-red: #e34b4b;
+  --color-green: #409c44;
+  --color-orange: #f69908;
+  --color-blue: #39bbdb;
+
+  /* Disable Raleway text figures */
+  -webkit-font-feature-settings: "lnum";
+  -moz-font-feature-settings: "lnum";
+  font-feature-settings: "lnum";
+
+  color: var(--primary-color);
+  padding: 0;
+  margin: 0;
+  font-family: var(--custom-font-family);
+  background-color: var(--bg-color);
+  height: 100%;
+}
+
+* {
+  color: var(--custom-color);
+  font-family: var(--custom-font-family);
+  box-sizing: border-box;
+}
+
+.layout {
+  height: 100vh;
+  width: 100%;
+  margin-top: 0;
+}
+
+.main {
+  padding: 0 2em;
+  height: 100%;
+  margin-left: 12.5%;
+  width: 87.5%;
+}
+
+@media (max-width: 1200px) {
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  margin-top: 0;
+  padding-top: 0.67em;
+}
+
+code {
+  font-family: monospace;
+  font-weight: 400;
+  font-size: 1em;
+  background-color: #d1d1d1;
+  color: #505050;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  border: #505050 solid 1px;
+}

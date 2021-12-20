@@ -1,0 +1,21 @@
+.flashcardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em, max-content));
+  grid-template-rows: repeat(6, minmax(5em, max-content));
+  grid-gap: 0.25em;
+  grid-auto-flow: dense;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  max-width: 100vw;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}

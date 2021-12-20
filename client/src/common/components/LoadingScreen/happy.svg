@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="111.66" height="134" viewBox="0 0 111.66 134">
+  <defs>
+    <clipPath id="clip-happy">
+      <rect width="111.66" height="134"/>
+    </clipPath>
+  </defs>
+  <g id="happy" clip-path="url(#clip-happy)">
+    <rect width="111.66" height="134" fill="#fff"/>
+    <g id="Group_43" data-name="Group 43" transform="translate(5333 5569)">
+      <path id="Path_3" data-name="Path 3" d="M19.851,0h71.96a19.851,19.851,0,0,1,19.851,19.851v94.293A19.851,19.851,0,0,1,91.811,134H19.851A19.851,19.851,0,0,1,0,114.144V19.851A19.851,19.851,0,0,1,19.851,0Z" transform="translate(-5333 -5569)" fill="#fff"/>
+      <path id="Path_3_-_Outline" shape-rendering="geometricPrecision" data-name="Path 3 - Outline" d="M19.851,5A14.851,14.851,0,0,0,5,19.851v94.293A14.851,14.851,0,0,0,19.851,129h71.96a14.851,14.851,0,0,0,14.851-14.851V19.851A14.851,14.851,0,0,0,91.811,5H19.851m0-5h71.96a19.851,19.851,0,0,1,19.851,19.851v94.293A19.851,19.851,0,0,1,91.811,134H19.851A19.851,19.851,0,0,1,0,114.144V19.851A19.851,19.851,0,0,1,19.851,0Z" transform="translate(-5333 -5569)" fill="#505050"/>
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="7.444" cy="7.444" r="7.444" transform="translate(-5305.084 -5509.446)" fill="#505050"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="7.444" cy="7.444" r="7.444" transform="translate(-5262.901 -5509.446)" fill="#505050"/>
+      <g id="Group_1" data-name="Group 1" transform="translate(-5300.643 -5486.298)">
+        <path id="Path_1" data-name="Path 1" d="M128.642,1794.658h48.424s2.841,26.009-24.048,25.8S128.642,1794.658,128.642,1794.658Z" transform="translate(-128.58 -1794.658)" fill="#505050"/>
+        <path id="Rectangle_3" data-name="Rectangle 3" d="M0,0H37.221a0,0,0,0,1,0,0V3.2a3,3,0,0,1-3,3H3a3,3,0,0,1-3-3V0A0,0,0,0,1,0,0Z" transform="translate(5.676 0)" fill="#b2b2b2"/>
+      </g>
+      <path id="Intersection_1" data-name="Intersection 1" d="M16.438,13.586C8.863,13.526,3.622,11.453,0,8.5,2.585,3.516,8.817,0,16.094,0c7.514,0,13.913,3.749,16.334,9-3.516,2.727-8.529,4.591-15.664,4.592Z" transform="translate(-5292.643 -5474.086)" fill="#878787"/>
+    </g>
+  </g>
+</svg>

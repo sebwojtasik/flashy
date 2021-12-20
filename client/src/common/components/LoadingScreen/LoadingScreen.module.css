@@ -1,0 +1,53 @@
+.layout {
+  display: grid;
+  place-content: center;
+}
+
+.container {
+  width: 50px;
+  height: 60px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: flip-card 2s infinite ease-in-out;
+}
+
+.front,
+.back {
+  /* fix jagged edges in firefox */
+  padding: 1px;
+  margin: -1px;
+  border: 1px solid transparent;
+
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.front {
+  z-index: 2;
+}
+
+.spinner {
+  width: 50px;
+  height: 60px;
+  margin: auto;
+}
+
+@keyframes flip-card {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(0deg) rotateY(180deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(0deg) rotateY(360deg);
+  }
+}

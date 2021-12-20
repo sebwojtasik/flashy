@@ -1,0 +1,21 @@
+.layout {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+}
+
+.form {
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  border: var(--border-thick);
+}
+
+.title {
+  margin: 0 0 0.5em 0;
+  font-size: 2em;
+}
