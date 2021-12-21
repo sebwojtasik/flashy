@@ -20,7 +20,7 @@ export const useSignUp = () => {
         if (data.data === null) {
           toast.error("Something went wrong :(");
         } else {
-          client.resetStore().then(() => navigate("/"));
+          client.resetStore().then(() => navigate("/", { replace: true }));
         }
       });
   };

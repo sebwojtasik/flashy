@@ -14,7 +14,7 @@ export const useLogout = () => {
           }
         `,
       })
-      .then(() => navigate("/"))
+      .then(() => navigate("/", { replace: true }))
       .then(() => client.resetStore());
   };
   return logout;

@@ -20,7 +20,7 @@ export const useLogin = () => {
         if (data.data === null) {
           toast.error("Invalid email or password");
         } else {
-          client.resetStore().then(() => navigate("/"));
+          client.resetStore().then(() => navigate("/", { replace: true }));
         }
       });
   };
