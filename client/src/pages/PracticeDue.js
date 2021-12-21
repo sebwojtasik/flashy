@@ -24,10 +24,7 @@ const PracticeDue = () => {
     variables: { deckId: params.id },
   });
   if (loading) return <LoadingScreen />;
-  if (data)
-    return (
-      <Practice flashcards={data.dueFlashcards} callingQuery="dueFlashcards" />
-    );
+  if (data) return <Practice flashcards={data.dueFlashcards} />;
 };
 
 export default PracticeDue;

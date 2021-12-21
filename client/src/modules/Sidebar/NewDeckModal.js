@@ -15,7 +15,6 @@ const CREATE_DECK = gql`
 
 const NewDeckModal = ({ open, setOpen }) => {
   const [createDeck] = useMutation(CREATE_DECK, {
-    // refetchQueries: ["getUserDecks"],
     update(cache, { data: { createDeck } }) {
       const { user } = cache.readQuery({
         query: gql`
@@ -29,7 +28,6 @@ const NewDeckModal = ({ open, setOpen }) => {
           }
         `,
       });
-      console.log({ ...user, decks: [...user.decks, createDeck] });
       cache.writeQuery({
         query: gql`
           query getUserDecks {

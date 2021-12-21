@@ -1,9 +1,8 @@
-import Card from "../../common/components/Card";
 import ProgressBar from "../../common/components/ProgressBar";
 import Button from "../../common/components/Button";
 import styles from "./Practice.module.css";
 import { useEffect, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useApolloClient, gql, useMutation } from "@apollo/client";
 import PracticeCard from "./PracticeCard";
 
 const UPDATE_FLASHCARD = gql`
@@ -13,37 +12,38 @@ const UPDATE_FLASHCARD = gql`
       due
       reviews
       retention
+      new
     }
   }
 `;
 
-const Practice = ({ flashcards, callingQuery }) => {
-  // TODO: update cache manually in the future
-  const refetchQueries = [
-    "getUser",
-    "dueFlashcards",
-    "newFlashcards",
-    "getDecks",
-    "dueFromDeck",
-    "newFromDeck",
-    "getDeck",
-  ].filter((query) => query !== callingQuery);
-
+const Practice = ({ flashcards }) => {
   const [updateFlashcard] = useMutation(UPDATE_FLASHCARD, {
     update(cache, { data: { updateFlashcard } }) {
-      cache.writeFragment({
-        id: `Flashcard:${updateFlashcard.id}`,
-        fragment: gql`
-          fragment Flashcard on Flashcard {
-            due
-            reviews
-            retention
-          }
-        `,
-        data: updateFlashcard,
+      cache.modify({
+        fields: {
+          id: `Flashcard:${updateFlashcard.id}`,
+          due: (value) => updateFlashcard.due,
+          reviews: (value) => updateFlashcard.reviews,
+          retention: (value) => updateFlashcard.retention,
+          new: (value) => false,
+        },
+      });
+      cache.modify({
+        fields: {
+          newFlashcards: (value) =>
+            value.filter(
+              (flashcard) =>
+                flashcard.__ref !== `Flashcard:${updateFlashcard.id}`
+            ),
+          dueFlashcards: (value) =>
+            value.filter(
+              (flashcard) =>
+                flashcard.__ref !== `Flashcard:${updateFlashcard.id}`
+            ),
+        },
       });
     },
-    refetchQueries,
   });
 
   useEffect(() => {
@@ -54,10 +54,12 @@ const Practice = ({ flashcards, callingQuery }) => {
   });
 
   const handleKeyDown = (e) => {
-    if (e.key === "r" || e.key === "R") {
-      remembered();
-    } else if (e.key === "f" || e.key === "F") {
-      forgot();
+    if (flashcards.length !== currentFlashcard && flashcards.length !== 0) {
+      if (e.key === "r" || e.key === "R") {
+        remembered();
+      } else if (e.key === "f" || e.key === "F") {
+        forgot();
+      }
     }
   };
 

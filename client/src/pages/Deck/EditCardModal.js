@@ -3,7 +3,6 @@ import Button from "../../common/components/Button";
 import TextInput from "../../common/components/TextInput";
 import { gql, useMutation } from "@apollo/client";
 import Modal from "../../common/components/Modal";
-import { useParams } from "react-router";
 
 const UPDATE_FLASHCARD = gql`
   mutation updateFlashcard($data: UpdateFlashcardInput) {
@@ -25,6 +24,7 @@ const CREATE_FLASHCARD = gql`
       reviews
       new
       id
+      deckId
     }
   }
 `;
@@ -37,57 +37,19 @@ const DELETE_FLASHCARD = gql`
   }
 `;
 
-const query = gql`
-  query getDeck($deckId: ID!) {
-    deck(id: $deckId) {
-      name
-      flashcards {
-        front
-        back
-        due
-        retention
-        reviews
-        new
-        id
-      }
-    }
-  }
-`;
-
 const EditCardModal = ({ open, flashcard, setOpen, deckId }) => {
-  const refetchQueries = [
-    "getUser",
-    "dueFlashcards",
-    "newFlashcards",
-    "getDecks",
-    "dueFromDeck",
-    "newFromDeck",
-    "getDeck",
-  ];
-
   const [updateFlashcard] = useMutation(UPDATE_FLASHCARD, {
     update(cache, { data: { updateFlashcard } }) {
-      const { deck } = cache.readQuery({
-        query,
-        variables: { deckId },
-      });
-      cache.writeQuery({
-        query,
-        variables: { deckId },
-        data: {
-          deck: {
-            ...deck,
-            flashcards: deck.flashcards.map((flashcard) => {
-              if (flashcard.id === updateFlashcard.id) {
-                return updateFlashcard;
-              }
-              return flashcard;
-            }),
-          },
+      cache.modify({
+        fields: {
+          id: `Flashcard:${updateFlashcard.id}`,
+          front: (value) => updateFlashcard.front,
+          back: (value) => updateFlashcard.back,
         },
       });
     },
   });
+
   const [createFlashcard] = useMutation(CREATE_FLASHCARD, {
     update(cache, { data: { createFlashcard } }) {
       cache.writeFragment({
@@ -101,25 +63,28 @@ const EditCardModal = ({ open, flashcard, setOpen, deckId }) => {
             reviews
             new
             id
+            deckId
           }
         `,
         data: createFlashcard,
       });
-      cache.writeQuery({
-        query,
-        variables: { deckId },
-        data: {
-          deck: {
-            ...cache.readQuery({
-              query,
-              variables: { deckId },
-            }),
-            flashcards: [createFlashcard],
-          },
+      cache.modify({
+        fields: {
+          [`deck({"id":"${deckId}"})`]: (value) => ({
+            ...value,
+            flashcards: [
+              ...value.flashcards,
+              { __ref: `Flashcard:${createFlashcard.id}` },
+            ],
+          }),
+          newFlashcards: (value) => [
+            ...value,
+            { __ref: `Flashcard:${createFlashcard.id}` },
+          ],
+          flashcards: (value) => [...value, createFlashcard.id],
         },
       });
     },
-    refetchQueries,
   });
 
   const [deleteFlashcard] = useMutation(DELETE_FLASHCARD, {
