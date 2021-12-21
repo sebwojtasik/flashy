@@ -24,7 +24,10 @@ const PracticeNew = () => {
     variables: { deckId: params.id },
   });
   if (loading) return <LoadingScreen />;
-  if (data) return <Practice flashcards={data.newFlashcards} />;
+  if (data)
+    return (
+      <Practice flashcards={data.newFlashcards} callingQuery="newFlashcards" />
+    );
 };
 
 export default PracticeNew;

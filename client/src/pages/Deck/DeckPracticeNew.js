@@ -26,7 +26,10 @@ const DeckPracticeNew = () => {
 
   if (loading) return <LoadingScreen />;
   if (error) return <div>Error!</div>;
-  if (data) return <Practice flashcards={data.newFromDeck} />;
+  if (data)
+    return (
+      <Practice flashcards={data.newFromDeck} callingQuery="newFromDeck" />
+    );
 };
 
 export default DeckPracticeNew;

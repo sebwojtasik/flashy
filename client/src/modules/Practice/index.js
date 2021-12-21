@@ -4,6 +4,7 @@ import styles from "./Practice.module.css";
 import { useEffect, useState } from "react";
 import { useApolloClient, gql, useMutation } from "@apollo/client";
 import PracticeCard from "./PracticeCard";
+import LoadingScreen from "../../common/components/LoadingScreen";
 
 const UPDATE_FLASHCARD = gql`
   mutation updateFlashcard($data: UpdateFlashcardInput) {
@@ -17,7 +18,21 @@ const UPDATE_FLASHCARD = gql`
   }
 `;
 
-const Practice = ({ flashcards }) => {
+const Practice = ({ flashcards, callingQuery }) => {
+  const client = useApolloClient();
+  const [loading, setLoading] = useState(true);
+
+  // force query refetch on first render
+  useEffect(() => {
+    client
+      .refetchQueries({
+        include: [callingQuery],
+      })
+      .then(() => {
+        setLoading(false);
+      });
+  }, [callingQuery, client]);
+
   const [updateFlashcard] = useMutation(UPDATE_FLASHCARD, {
     update(cache, { data: { updateFlashcard } }) {
       cache.modify({
@@ -27,20 +42,6 @@ const Practice = ({ flashcards }) => {
           reviews: (value) => updateFlashcard.reviews,
           retention: (value) => updateFlashcard.retention,
           new: (value) => false,
-        },
-      });
-      cache.modify({
-        fields: {
-          newFlashcards: (value) =>
-            value.filter(
-              (flashcard) =>
-                flashcard.__ref !== `Flashcard:${updateFlashcard.id}`
-            ),
-          dueFlashcards: (value) =>
-            value.filter(
-              (flashcard) =>
-                flashcard.__ref !== `Flashcard:${updateFlashcard.id}`
-            ),
         },
       });
     },
@@ -107,6 +108,8 @@ const Practice = ({ flashcards }) => {
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [currentFlashcard, setCurrentFlashcard] = useState(0);
+
+  if (loading) return <LoadingScreen />;
 
   if (flashcards.length === 0) {
     return (

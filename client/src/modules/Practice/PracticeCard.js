@@ -5,7 +5,6 @@ const PracticeCard = ({ flashcard, isFlipped, setIsFlipped }) => {
   const onKeyPressed = (e) => {
     if (e.key === " ") {
       setIsFlipped(true);
-      console.log("hewo");
       window.removeEventListener("keydown", onKeyPressed, true);
     }
   };
