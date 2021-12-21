@@ -13,7 +13,7 @@ import PracticeNew from "./pages/PracticeNew";
 import DeckPracticeNew from "./pages/Deck/DeckPracticeNew";
 import SignUp from "./pages/SignUp";
 import { useState } from "react";
-import SidebarToggle from "./modules/Sidebar/SidebarToggle";
+import Navbar from "./modules/Navbar";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -34,8 +34,8 @@ export default function Home() {
     <div>
       {data.isAuthenticated ? (
         <div className="layout">
-          <SidebarToggle isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-          <Sidebar isOpen={sidebarOpen} />
+          <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+          <Navbar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
           <div className="main">
             <Routes>
               <Route index path="/" element={<Dashboard />} />

@@ -5,6 +5,7 @@
   padding: 0.25em;
   margin: 0.5em 0;
   background-color: var(--bg-color);
+  font-size: medium;
 }
 
 .input:focus {

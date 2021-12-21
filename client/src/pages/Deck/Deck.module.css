@@ -1,7 +1,7 @@
 .flashcardContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15em, max-content));
-  grid-template-rows: repeat(6, minmax(5em, max-content));
+  grid-template-rows: repeat(auto-fit, minmax(10em, max-content));
   grid-gap: 0.25em;
   grid-auto-flow: dense;
 }
@@ -18,4 +18,19 @@
   display: flex;
   align-items: center;
   gap: 0.2em;
+}
+
+@media (max-width: 1200px) {
+  .flashcardContainer {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto-fit, minmax(7.5em, max-content));
+  }
+  .title {
+    margin-bottom: 0.33em;
+  }
+  .menu {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 1.5em;
+  }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Sidebar.css";
-import { useState, useEffect } from "react";
-import logo from "./logo.svg";
+import { useState } from "react";
+import logo from "../../common/logo.svg";
 import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../common/hooks/useLogout";
@@ -29,10 +29,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     <div className={isOpen ? "sidebar" : "sidebar collapsed"}>
       <NewDeckModal open={showModal} setOpen={setShowModal} />
       <div>
-        <Link to="/">
+        <Link to="/" onClick={() => setIsOpen(false)}>
           <img src={logo} className="logo" alt="logo" />
         </Link>
-        <Link className="icon-link" to="/">
+        <Link className="icon-link" to="/" onClick={() => setIsOpen(false)}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </svg>
           <p>Dashboard</p>
         </Link>
-        <Link className="icon-link" to="/due">
+        <Link className="icon-link" to="/due" onClick={() => setIsOpen(false)}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -66,7 +66,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </svg>
           <p>Due today</p>
         </Link>
-        <Link className="icon-link" to="/new">
+        <Link className="icon-link" to="/new" onClick={() => setIsOpen(false)}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -109,7 +109,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             <p>Couldn't load decks :(</p>
           ) : (
             data.user.decks.map((deck) => (
-              <DeckLink key={deck.id} id={deck.id} name={deck.name} />
+              <span key={deck.id} onClick={() => setIsOpen(false)}>
+                <DeckLink id={deck.id} name={deck.name} />
+              </span>
             ))
           )}
         </div>

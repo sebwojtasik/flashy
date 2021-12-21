@@ -6,7 +6,8 @@
     "header"
     "content"
     "footer";
-  height: 100%;
+  height: calc(100% - 3.01em);
+  padding-bottom: 0.5em;
 }
 
 .content {

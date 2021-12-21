@@ -1,0 +1,29 @@
+.navbar {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 100;
+  background-color: var(--bg-color);
+  border-bottom: var(--border-thiner);
+  /* box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.05); */
+  width: 100%;
+  top: 0;
+  padding: 0.5em 1.25em;
+  height: 3.5em;
+}
+
+.sidebarToggle {
+  align-self: center;
+  height: 2em;
+}
+
+.logo {
+  width: 8em;
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    display: none;
+  }
+}

@@ -4,16 +4,27 @@
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  cursor: pointer;
+  margin: 0.2em 0;
 }
 
 .deckLink:hover .deleteIcon {
   opacity: 1;
 }
 
+@media (max-width: 1200px) {
+  .deckLink .deleteIcon {
+    opacity: 1;
+  }
+}
+
 .deleteIcon {
   opacity: 0;
   color: var(--color-red);
   height: 1em;
+  cursor: pointer;
+}
+
+.link {
+  width: 100%;
   cursor: pointer;
 }

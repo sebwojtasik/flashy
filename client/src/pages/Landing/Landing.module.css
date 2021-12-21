@@ -59,4 +59,7 @@
   .column2 {
     width: 100%;
   }
+  .header {
+    padding-right: 0.5em;
+  }
 }

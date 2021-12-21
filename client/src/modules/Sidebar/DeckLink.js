@@ -25,7 +25,7 @@ const DeckLink = ({ id, name }) => {
 
   return (
     <div className={styles.deckLink}>
-      <Link className="link" key={id} to={`/deck/${id}`}>
+      <Link className={styles.link} key={id} to={`/deck/${id}`}>
         {name}
       </Link>
       <svg
