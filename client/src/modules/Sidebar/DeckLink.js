@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./DeckLink.module.css";
 import { gql, useMutation } from "@apollo/client";
-import { useEffect } from "react";
 
 const DELETE_DECK = gql`
   mutation deleteDeck($id: ID!) {

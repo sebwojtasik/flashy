@@ -2,7 +2,6 @@ import styles from "./SignUp.module.css";
 import { useState } from "react";
 import TextInput from "../../common/components/TextInput";
 import Button from "../../common/components/Button";
-import { useLogin } from "../../common/hooks/useLogin";
 import { useSignUp } from "../../common/hooks/useSignUp";
 
 const SignUp = () => {
