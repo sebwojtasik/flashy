@@ -12,7 +12,7 @@ const whitelist = [
   "https://studio.apollographql.com",
 ];
 
-const server = new ApolloServer({
+const app = new ApolloServer({
   resolvers,
   typeDefs,
   context: ({ req, res }) => {
@@ -59,6 +59,4 @@ const getUser = (token) => {
   }
 };
 
-server.listen({ port }, () =>
-  console.log(`Server ready at: http://localhost:${port}`)
-);
+module.exports = app;
