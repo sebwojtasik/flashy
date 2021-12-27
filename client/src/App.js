@@ -9,8 +9,8 @@ import { gql, useQuery } from "@apollo/client";
 import LoadingScreen from "./common/components/LoadingScreen";
 import DeckPracticeDue from "./pages/Deck/DeckPracticeDue";
 import PracticeDue from "./pages/PracticeDue";
-import PracticeNew from "./pages/PracticeNew";
-import DeckPracticeNew from "./pages/Deck/DeckPracticeNew";
+import LearnNew from "./pages/LearnNew";
+import DeckLearnNew from "./pages/Deck/DeckLearnNew";
 import SignUp from "./pages/SignUp";
 import { useState } from "react";
 import Navbar from "./modules/Navbar";
@@ -40,9 +40,9 @@ export default function Home() {
             <Routes>
               <Route index path="/" element={<Dashboard />} />
               <Route path="/deck/:id" element={<Deck />} />
-              <Route path="/deck/:id/new" element={<DeckPracticeNew />} />
+              <Route path="/deck/:id/new" element={<DeckLearnNew />} />
               <Route path="/deck/:id/due" element={<DeckPracticeDue />} />
-              <Route path="/new" element={<PracticeNew />} />
+              <Route path="/new" element={<LearnNew />} />
               <Route path="/due" element={<PracticeDue />} />
             </Routes>
           </div>

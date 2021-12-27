@@ -1,0 +1,25 @@
+.layout {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  height: calc(100% - 3.01em);
+  padding-bottom: 0.5em;
+}
+
+.content {
+  grid-area: content;
+  place-self: center;
+}
+
+.header {
+  grid-area: header;
+}
+
+.footer {
+  grid-area: footer;
+  place-self: end center;
+}

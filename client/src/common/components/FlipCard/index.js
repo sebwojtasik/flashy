@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import styles from "./PracticeCard.module.css";
+import styles from "./FlipCard.module.css";
 
-const PracticeCard = ({ flashcard, isFlipped, setIsFlipped }) => {
+const FlipCard = ({ flashcard, isFlipped, setIsFlipped }) => {
   const onKeyPressed = (e) => {
     if (e.key === " ") {
       setIsFlipped(true);
@@ -17,7 +17,7 @@ const PracticeCard = ({ flashcard, isFlipped, setIsFlipped }) => {
   });
 
   return (
-    <div className={styles.practiceCard} onClick={() => setIsFlipped(true)}>
+    <div className={styles.flipCard} onClick={() => setIsFlipped(true)}>
       <div className={styles.front}>
         <h2>{flashcard.front}</h2>
       </div>
@@ -50,4 +50,4 @@ const PracticeCard = ({ flashcard, isFlipped, setIsFlipped }) => {
   );
 };
 
-export default PracticeCard;
+export default FlipCard;

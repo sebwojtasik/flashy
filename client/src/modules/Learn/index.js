@@ -1,6 +1,6 @@
 import ProgressBar from "../../common/components/ProgressBar";
 import Button from "../../common/components/Button";
-import styles from "./Practice.module.css";
+import styles from "./Learn.module.css";
 import { useEffect, useState } from "react";
 import { useApolloClient, gql, useMutation } from "@apollo/client";
 import LoadingScreen from "../../common/components/LoadingScreen";
@@ -10,15 +10,15 @@ const UPDATE_FLASHCARD = gql`
   mutation updateFlashcard($data: UpdateFlashcardInput) {
     updateFlashcard(data: $data) {
       id
-      due
       reviews
       retention
+      due
       new
     }
   }
 `;
 
-const Practice = ({ flashcards, callingQuery }) => {
+const Learn = ({ flashcards, callingQuery }) => {
   const client = useApolloClient();
   const [loading, setLoading] = useState(true);
 
@@ -39,9 +39,9 @@ const Practice = ({ flashcards, callingQuery }) => {
         fields: {
           id: `Flashcard:${updateFlashcard.id}`,
           due: (value) => updateFlashcard.due,
+          new: (value) => false,
           reviews: (value) => updateFlashcard.reviews,
           retention: (value) => updateFlashcard.retention,
-          new: (value) => false,
         },
       });
     },
@@ -56,49 +56,22 @@ const Practice = ({ flashcards, callingQuery }) => {
 
   const handleKeyDown = (e) => {
     if (flashcards.length !== currentFlashcard && flashcards.length !== 0) {
-      if (e.key === "r" || e.key === "R") {
-        remembered();
-      } else if (e.key === "f" || e.key === "F") {
-        forgot();
+      if (e.key === "l" || e.key === "L") {
+        learned();
       }
     }
   };
 
-  const remembered = () => {
+  const learned = () => {
     const flashcard = flashcards[currentFlashcard];
     updateFlashcard({
       variables: {
         data: {
-          due: new Date(
-            parseInt(flashcard.due) + flashcard.nextReview * 24 * 60 * 60 * 1000
-          ),
-          reviews: flashcard.reviews + 1,
-          retention: flashcard.retention + 1,
+          due: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          reviews: 1,
+          retention: 1,
           new: false,
           id: flashcard.id,
-          nextReview: flashcard.nextReview * 2,
-          mastered: flashcard.nextReview * 2 === 256 ? true : false,
-        },
-      },
-    });
-    setIsFlipped(false);
-    setCurrentFlashcard(currentFlashcard + 1);
-  };
-
-  const forgot = () => {
-    const flashcard = flashcards[currentFlashcard];
-    let nextReview =
-      flashcard.nextReview === 1 ? 1 : flashcard.nextReview * 0.5;
-    updateFlashcard({
-      variables: {
-        data: {
-          due: new Date(
-            parseInt(flashcard.due) + nextReview * 24 * 60 * 60 * 1000
-          ),
-          reviews: flashcard.reviews + 1,
-          new: false,
-          id: flashcard.id,
-          nextReview: nextReview,
         },
       },
     });
@@ -115,7 +88,7 @@ const Practice = ({ flashcards, callingQuery }) => {
     return (
       <div className={styles.layout}>
         <div className={styles.content}>
-          <h1>You don't have any cards to practice right now!</h1>
+          <h1>You don't have any new cards to learn right now!</h1>
         </div>
       </div>
     );
@@ -123,7 +96,7 @@ const Practice = ({ flashcards, callingQuery }) => {
     return (
       <div className={styles.layout}>
         <div className={styles.content}>
-          <h1>Practice complete!</h1>
+          <h1>Learning session complete!</h1>
         </div>
       </div>
     );
@@ -132,7 +105,7 @@ const Practice = ({ flashcards, callingQuery }) => {
       <div className={styles.layout}>
         <div className={styles.header}>
           <h1>
-            Practice {currentFlashcard}/{flashcards.length}
+            Learn {currentFlashcard}/{flashcards.length}
           </h1>
           <ProgressBar
             completed={(currentFlashcard / flashcards.length) * 100}
@@ -148,11 +121,8 @@ const Practice = ({ flashcards, callingQuery }) => {
           )}
         </div>
         <div className={styles.footer}>
-          <Button callback={forgot}>
-            Forgot <code>F</code>
-          </Button>
-          <Button callback={remembered}>
-            Remembered <code>R</code>
+          <Button callback={learned}>
+            Learned <code>L</code>
           </Button>
         </div>
       </div>
@@ -160,4 +130,4 @@ const Practice = ({ flashcards, callingQuery }) => {
   }
 };
 
-export default Practice;
+export default Learn;

@@ -1,9 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router";
 import LoadingScreen from "../common/components/LoadingScreen";
-import Practice from "../modules/Practice";
+import Learn from "../modules/Learn";
 
-const PracticeNew = () => {
+const LearnNew = () => {
   const params = useParams();
   const GET_NEW_FLASHCARDS = gql`
     query newFlashcards {
@@ -26,8 +26,8 @@ const PracticeNew = () => {
   if (loading) return <LoadingScreen />;
   if (data)
     return (
-      <Practice flashcards={data.newFlashcards} callingQuery="newFlashcards" />
+      <Learn flashcards={data.newFlashcards} callingQuery="newFlashcards" />
     );
 };
 
-export default PracticeNew;
+export default LearnNew;
