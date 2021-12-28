@@ -167,6 +167,13 @@ const resolvers = {
     },
     deleteDeck: async (parent, { id }, context, info) => {
       if (!context.userId) return new AuthenticationError("Not authenticated");
+      // delete all flashcards in the deck first
+      await prisma.flashcard.deleteMany({
+        where: {
+          deckId: id,
+        },
+      });
+      // delete the deck itself
       const deck = await prisma.deck.delete({
         where: { id },
       });
